@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="xibLoader" customModule="TechNewsReader" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hearts_ff0000_100-1" translatesAutoresizingMaskIntoConstraints="NO" id="UC6-nN-wiL">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="2y3-Fd-VcF"/>
+                        <constraint firstAttribute="width" constant="80" id="WXL-87-9YX"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Removed From Favorites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Nf-gY-Wqq">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="218" id="6jK-yu-xKN"/>
+                        <constraint firstAttribute="height" constant="50" id="7Zu-LI-92c"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="UC6-nN-wiL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="85" id="3bT-nW-1dv"/>
+                <constraint firstItem="UC6-nN-wiL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="85" id="F14-kE-rG4"/>
+                <constraint firstAttribute="bottom" secondItem="4Nf-gY-Wqq" secondAttribute="bottom" constant="20" id="PMV-l6-wYn"/>
+                <constraint firstAttribute="trailing" secondItem="4Nf-gY-Wqq" secondAttribute="trailing" constant="16" id="Rlr-7j-gNr"/>
+                <constraint firstItem="4Nf-gY-Wqq" firstAttribute="top" secondItem="UC6-nN-wiL" secondAttribute="bottom" constant="15" id="WiZ-8r-Oc5"/>
+                <constraint firstItem="4Nf-gY-Wqq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="ZQx-pV-IFx"/>
+                <constraint firstAttribute="trailing" secondItem="UC6-nN-wiL" secondAttribute="trailing" constant="85" id="zIg-3f-pgl"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Hearts_ff0000_100-1" width="100" height="100"/>
+    </resources>
+</document>
