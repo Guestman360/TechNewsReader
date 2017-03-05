@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIcon: UIActivityIndicatorView!
     
@@ -18,6 +17,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var source = "techcrunch"
     
     var refreshControl: UIRefreshControl = UIRefreshControl()
+    let favVC = FavoritesController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,12 +44,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func refreshData() { //For the refreshControl action
-        
         tableView.reloadData()
         refreshControl.endRefreshing()
     }
     
-    func fetchArticles(fromSource provider: String) { //All the JSON parsing is done in this one class
+    func fetchArticles(fromSource provider: String) {
         
         let urlRequest = URLRequest(url: URL(string: "https://newsapi.org/v1/articles?source=\(provider)&sortBy=top&apiKey=6d74864190b84e68b3fba9b1ff20a50f")!)
         //Use string interpolation to allow feed to display articles other than techcrunch
@@ -57,7 +56,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             
             if error != nil {
-                print(error)
+                print("Something went wrong: \(error), \(error?.localizedDescription)")
                 return
             }
             
@@ -99,6 +98,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    //Tableview methods and delegates
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let webVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "web") as? WebviewViewController
         
@@ -108,12 +108,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return self.articles?.count ?? 0 //Essentially means if articles aren't there then just use 0, similar to if statements
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 1
     }
     
@@ -129,19 +127,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         return cell
     }
-    
-    func saveArticle() {
-    
-        //let favCell = tableView.cellForRow(at: IndexPath.index(cell))
+    //fix this to use coredata
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let favorite = UITableViewRowAction(style: .normal, title: "Favorite") { (action, indexPath) in
+            var favorites : [Article] = []
+            let defaults = UserDefaults.standard
+            if let favoritesDefaults : AnyObject? = defaults.object(forKey: "favorites") as AnyObject?? {
+                favorites = favoritesDefaults! as! [Article]
+            }
+            //favorites.append((tableView.cellForRow(at: indexPath)?.detailTextLabel?.text)!)
+            //favVC.favoritesArray?.append(favorite) as Article
+            defaults.set(favorites, forKey: "favorites")
+        }
+        
+        favorite.backgroundColor = UIColor.green
+        
+        return [favorite]
     }
-    
-    
-    
-    
+
     var menumanager = MenuManager() //Remember to create instance of class in other file
     
     @IBAction func menuPressed(_ sender: AnyObject) {
-        
         menumanager.openMenu()
         menumanager.mainVC = self
     }
@@ -149,8 +156,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
 }
 
-
-extension UIImageView { //Must create a new urlSession for the image, code is similar to JSON parsing code
+//Must create a new urlSession for the image, code is similar to JSON parsing code
+extension UIImageView {
 
     func downloadImage(from url: String) {
         
@@ -171,20 +178,4 @@ extension UIImageView { //Must create a new urlSession for the image, code is si
         task.resume()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

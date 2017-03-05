@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ic_list_white_2x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "plus-2-44.png",
       "scale" : "2x"
     },
     {

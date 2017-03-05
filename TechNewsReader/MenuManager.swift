@@ -19,7 +19,7 @@ class MenuManager: NSObject, UITableViewDelegate, UITableViewDataSource {
     
         if let window = UIApplication.shared.keyWindow { //Creates a faded black overlay of window
             blackView.frame = window.frame
-            blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+            blackView.backgroundColor = UIColor(white: 0, alpha: 0.75)
             
             //Adding a gesture recognizer to back out of the blackView
             blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissMenu)))
