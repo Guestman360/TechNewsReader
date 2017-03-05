@@ -50,7 +50,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func fetchArticles(fromSource provider: String) {
         
-        let urlRequest = URLRequest(url: URL(string: "https://newsapi.org/v1/articles?source=\(provider)&sortBy=top&apiKey=6d74864190b84e68b3fba9b1ff20a50f")!)
+        let urlRequest = URLRequest(url: URL(string: "https://newsapi.org/v1/articles?source=\(provider)&sortBy=top&apiKey=(your api key goes here)")!)
         //Use string interpolation to allow feed to display articles other than techcrunch
         
         let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
